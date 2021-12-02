@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta author="Luc de Brouwer" />
+    <meta description="Vacancy Redesigner Rabobank" />
+    <title>TH | Vacancy Redesigner</title>
+    <link rel="stylesheet" href="../static/css/styles.css" />
+  </head>
+  <body>
+    <p>Welcome to Vacancy Redesigner</p>
+    <p>Powered by Rabobank and Flask.</p>
+
+    <form>
+      <div>
+        <label for="job_text">Job desc</label>
+        <textarea id="job-desc" class="form__input" name="job_text"></textarea>
+      </div>
+      <div>
+        <input type="submit" value="Submit"/>
+      </div>
+    </form>
+    <h2>Hello, {{ name }}</h2>
+  </body>
+</html>
