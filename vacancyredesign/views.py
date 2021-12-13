@@ -6,6 +6,10 @@ from vacancyredesign import app
 @app.route("/", methods=["POST", "GET"])
 def hello_world():
 
-    #formstring = request.args['job_text']
-    name = "Ninja"
-    return render_template("base.html", name=name)
+    if request.args['job_text'] != '':
+        return render_template("base.html")
+    else:
+
+        formstring = request.args['job_text']
+        name = "Ninja"
+        return render_template("base.html", name=name)

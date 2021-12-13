@@ -6,22 +6,138 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta author="Luc de Brouwer" />
     <meta description="Vacancy Redesigner Rabobank" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='img/rabobank_shortcut_icon.ico') }}"
+    />
     <title>TH | Vacancy Redesigner</title>
-    <link rel="stylesheet" href="../static/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
   </head>
-  <body>
-    <p>Welcome to Vacancy Redesigner</p>
-    <p>Powered by Rabobank and Flask.</p>
 
-    <form>
-      <div>
-        <label for="job_text">Job desc</label>
-        <textarea id="job-desc" class="form__input" name="job_text"></textarea>
-      </div>
-      <div>
-        <input type="submit" value="Submit"/>
-      </div>
-    </form>
-    <h2>Hello, {{ name }}</h2>
+  <body id="bootstrap-overrides">
+    <div class="container-fluid">
+      <header>
+        <nav class="navbar">
+          <div class="container-fluid">
+            <h2 class="navbar-brand" href="#">Vacaturechecker</h2>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="main-left col-lg-9">
+              <form
+                action=""
+                method="post"
+                class="mt-3 ml-3 mb-3 mr-3"
+                id="job_text_form"
+              >
+                <div>
+                  <textarea
+                    placeholder="Begin met typen... of plak je tekst"
+                    id="job-desc"
+                    class="form-control form__input"
+                    name="job_text"
+                    rows="25"
+                    cols="100"
+                  ></textarea>
+                </div>
+                <div class="mt-3 mb-3">
+                  <button
+                    class="btn submit-btn"
+                    form="job_text_form"
+                    type="submit"
+                  >
+                    Controleer mijn vacaturetekst
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="main-right col-lg-3 overflow-auto">
+              <div class="leesbaarheid">
+                <h3 class="mt-1">Leesbaarheid</h3>
+                <p>Aantal alinea's: {{n_lines}}</p>
+                <p>Aantal bulletpoints: {{n_bullets}}</p>
+              </div>
+              <div class="gender-bias">
+                <h3 class="mt-1">Gender-bias</h3>
+                <p>
+                  Percentage mannelijke woorden: {% if ratio['male_ratio']%}
+                  {{ratio['male_ratio']}}% {% endif %}
+                </p>
+                <p>
+                  Percentage vrouwelijke woorden: {% if ratio['female_ratio']%}
+                  {{ratio['female_ratio']}}% {% endif %}
+                </p>
+                {% if m_matches %}
+                <h6>Mannelijke woorden in vacaturetekst:</h6>
+                <ul>
+                  {% for w in m_matches %}
+                  <li>{{w}}</li>
+                  {% endfor %} {% endif %}
+                </ul>
+                {% if f_matches %}
+                <h6>Vrouwelijke woorden in vacaturetekst:</h6>
+                <ul>
+                  {% for w in f_matches %}
+                  <li>{{w}}</li>
+                  {% endfor %} {% endif %}
+                </ul>
+
+                {% if pm_matches %}
+                <div class="gedeeltelijk">
+                  <p>
+                    Een <strong>gedeeltelijke</strong> match ontstaat als er een
+                    woord uit de genderwording lijst gedeeltelijk of volledig
+                    terugkomt in een woord uit de tekst. Bijvoorbeeld bij het
+                    woord leider in leiderschap.
+                  </p>
+                </div>
+                <h6>Gedeeltelijke woord matches (man):</h6>
+
+                <ul>
+                  {% for w in pm_matches %}
+                  <li>{{w}}</li>
+                  {% endfor %}{% endif %}
+                </ul>
+                {% if pf_matches %}
+                <h6>Gedeeltelijke woord matches (vrouw):</h6>
+                <ul>
+                  {% for w in pf_matches %}
+                  <li>{{w}}</li>
+                  {% endfor %}{% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="footer col-lg-12">
+              {% if name %}
+              <h4 class="mt-3">Geschreven vacaturetekst:</h4>
+              <div>
+                <p>{{name}}</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
