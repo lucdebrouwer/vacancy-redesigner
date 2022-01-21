@@ -52,3 +52,14 @@ def calculate_readability_score(inp):
     else:
         return "No input"
     return leesniveau
+
+def get_statistics_debugging(job_desc_sentences, min_sent_length, max_sent_length, accurate_list, avg, median, length_list, filtered_sent_length):
+    print(f"Type: {type(job_desc_sentences)}")
+    print(f"No. Sentences: {len(job_desc_sentences)}")
+    print(f"The min. sent. length is: {min_sent_length}")
+    print(f"The max. sent. length is: {max_sent_length}")
+    print(f"The length of the ist is: {len(accurate_list)}")
+    print(f"The average sent. length is: {avg}")
+    print(f"Median is: {median}")
+    print(f"Length list: {length_list}")
+    print(f"Filtered sentence list: {filtered_sent_length}")

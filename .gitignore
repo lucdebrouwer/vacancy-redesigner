@@ -14,6 +14,10 @@ dist/
 build/
 *.egg-info/
 
-config.py
-.env
-.flaskenv
+#config.py
+#.env
+#.flaskenv
+test.db
+test.db-journal
+th-project.zip
+th.csv

@@ -160,3 +160,23 @@ def calculate_ratio(male_matches, female_matches):
         ratio_dct["female_ratio"] = 0
 
     return ratio_dct
+
+def get_bias_score(inp):
+    ratio = inp
+    if ratio['female_ratio'] == 50 and ratio['male_ratio'] == 50:
+        bias_score = "Neutraal"
+    elif ratio['female_ratio'] > 50 and ratio['female_ratio'] <= 60:
+        bias_score = "Enigzins vrouwelijk gestuurd"
+    elif ratio['female_ratio'] > 60 and ratio ['female_ratio'] <= 80:
+        bias_score = "Redelijk vrouwelijk gestuurd"
+    elif ratio['female_ratio'] > 80:
+        bias_score = "Sterk Vrouwelijk gestuurd"
+    elif ratio['male_ratio'] > 50 and ratio['male_ratio'] <= 60:
+        bias_score = "Enigzins mannelijk gestuurd"
+    elif ratio['male_ratio'] > 60 and ratio ['male_ratio'] <= 80:
+        bias_score = "Redelijk mannelijk gestuurd"
+    elif ratio['male_ratio'] > 80:
+        bias_score = "Sterk Mannelijk gestuurd"
+    else:
+        bias_score = "Geen score"
+    return bias_score
