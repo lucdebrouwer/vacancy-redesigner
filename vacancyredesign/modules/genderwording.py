@@ -25,7 +25,7 @@ def load_data():
     # Solution: https://stackoverflow.com/questions/21133976/flask-load-local-json
     # Initial try to import files result in PATH errors, solution is to use Flask's built-in static-folder attribute
     filename = os.path.join(app.static_folder, 'data', 'genderwords.json')
-    print("FN: " + filename)
+    #print("FN: " + filename)
     with open(filename) as genderwords:
         data = json.load(genderwords)
         return data
@@ -48,7 +48,7 @@ def check_for_exact_masculine_words(inp, words_to_check):
         res = re.search(r'\b{}\b'.format(re.escape(word)), input_lowercased)
         if res:
             exact_masculine_matches.append(res.group(0))
-            print(f"masculine matches: {res.group(0)}")
+            #print(f"masculine matches: {res.group(0)}")
         else:
             pass
     return exact_masculine_matches
@@ -68,7 +68,7 @@ def check_for_exact_feminine_words(inp, words_to_check):
         res = re.search(r'\b{}\b'.format(re.escape(word)), input_lowercased)
         if res:
             exact_feminine_matches.append(res.group(0))
-            print(f"feminine matches: {res.group(0)}")
+            #print(f"feminine matches: {res.group(0)}")
         else:
             pass
 
@@ -92,7 +92,7 @@ def check_for_partial_masculine_words(inp, words_to_check):
     for x in masculine:
         if x in input_lowercased and x not in masculine_matches:
             masculine_matches.append(x)
-            print(f"masculine matches: {x}")
+            #print(f"masculine matches: {x}")
 
     return masculine_matches
 
@@ -110,15 +110,22 @@ def check_for_partial_feminine_words(inp, words_to_check):
     for x in feminine:
         if x in input_lowercased and x not in feminine_matches:
             feminine_matches.append(x)
-            print(f"feminine matches: {x}")
+            #print(f"feminine matches: {x}")
     return feminine_matches
 
 
 def print_length_of_genderwording_lists(data):
 
-    print("Amount of available masculine words: " +
-          str(len(data['masculine'])))
-    print("Amount of available feminine words: " + str(len(data['feminine'])))
+    length_of_lists = {
+        "masculine": len(data['masculine']),
+        "feminine": len(data['feminine'])
+    }
+
+    # print("Amount of available masculine words: " +
+    #       str(len(data['masculine'])))
+    # print("Amount of available feminine words: " + str(len(data['feminine'])))
+
+    return length_of_lists
 
 
 def calculate_ratio(male_matches, female_matches):
@@ -130,8 +137,8 @@ def calculate_ratio(male_matches, female_matches):
     match_total = male_match_length + female_match_length
     # Print the outcome of each list to debug funtionality
     # uncomment for debugging purposes when in production
-    print(
-        f"The length of the matched masculine list is: {male_match_length} \nThe length of the matched feminine list is {female_match_length}")
+    #print(
+    #    f"The length of the matched masculine list is: {male_match_length} \nThe length of the matched feminine list is {female_match_length}")
 
     ratio_dct = {
         "male_ratio": 0,
@@ -147,8 +154,9 @@ def calculate_ratio(male_matches, female_matches):
         ratio_dct["female_ratio"] = female_ratio
 
         # Debug the outcome for functionality purpose
-        print(f"Male ratio: {male_ratio}, female ratio: {female_ratio}")
+        #print(f"Male ratio: {male_ratio}, female ratio: {female_ratio}")
     else:
-        return
+        ratio_dct["male_ratio"] = 0
+        ratio_dct["female_ratio"] = 0
 
     return ratio_dct

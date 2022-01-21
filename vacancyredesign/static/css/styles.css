@@ -6,6 +6,30 @@ body {
   background: #f1f1f1;
 }
 
+#imp-component {
+  /* color: #000099; */
+  /* font-weight: bold; */
+}
+
+#imp-emphasize {
+  color: #ff6600;
+  font-weight: bold;
+}
+
+table th {
+ /* border-right: solid 1px; */
+ color: #000099 !important; 
+}
+
+#th-others {
+  color: #ff6600 !important;
+}
+
+#other {
+  border-top: 1px solid #c1c1c1;
+  border-bottom: 2px solid black;
+}
+
 .footer {
   width: 100%;
   background-color: white;
